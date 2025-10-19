@@ -1,7 +1,5 @@
 #include "libfauna.h"
 
-//static int	st_define_tiles(t_map **map, char *map_name);
-
 static int	st_define_tiles(char *map_name);
 
 t_map	*load_map(char *map_name)
@@ -17,6 +15,7 @@ static int	st_define_tiles(char *map_name)
 {
 	FILE	*fp;
 	char	*line;
+	char	*token;
 	size_t	len;
 	ssize_t	read;
 
@@ -28,7 +27,11 @@ static int	st_define_tiles(char *map_name)
 	if (fp == NULL)
 		return (0);
 	while ((read = getline(&line, &len, fp) != -1))
-		printf("%s", line);
+		{
+			printf("%s\n", strtok(line, ", "));
+			while ((token = strtok(NULL, ", ")))
+				printf("%s\n", token);
+		}
 	free(line);
 	fclose(fp);
 	return (1);

@@ -17,4 +17,6 @@ $(NAME):
 clear:
 	rm -rf $(NAME)
 
-.PHONY: all clear
+re:	clear all
+
+.PHONY: all clear re
